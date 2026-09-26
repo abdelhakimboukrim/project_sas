@@ -52,7 +52,32 @@ for(cond of candidats){
 }
 
 
+function voting(condidatlist){
+
+    let voterCIN=prompt("donner votre CIN")
+     let vote =prompt("donner la CIN de condidat tu vous voter for ")
+    for(cond of condidatlist){
+       
+        if (cond.electeurs.includes(voterCIN)){
+            console.log( `« Vous avez déjà voté et vous n'avez pas le droit 
+                de modifier votre vote ni de voter à nouveau »`)
+                break;
+            }
+        
+        
+        else{
+            console.log("that a valid CIN");
+            if( vote===cond.cin){
+                cond.electeurs.push(voterCIN);
+                console.log("voting done succsisfully");
+                break ;
+              }}
+        
+        console.log("the candidat doesnt exist")
+             }
+                         }
     
 
 
+    
 
