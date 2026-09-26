@@ -5,7 +5,10 @@ const candidats=[{ cin: "AB123456", nom: "Boushaba", prenom: "Soufiane", partiPo
      { cin: "CD234567", nom: "El Amrani", prenom: "Fatima Zahra", partiPolitique: "PJD", age: 35,
     electeurs: ["AB123456", "GH456789", "KL678901"] },
 { cin: "MN789012", nom: "Tazi", prenom: "Hamza", partiPolitique: "USFP", age: 60,
-    electeurs: ["QR901234"] },];
+    electeurs: ["QR901234"] },{ cin: "QR901234", nom: "Berrada", prenom: "Omar", partiPolitique: "RNI", age: 38,
+    electeurs: ["CD234567", "EF345678", "MN789012"] }
+]
+    ;
 
   //1step
 function addcandidat(condidatlist){
@@ -41,9 +44,9 @@ function addMultiCon(condidatlist){
 }
 
 //step3
-function afficher(){
-for(cond of candidats){
-    console.log(`# Candidat ${candidats.indexOf(cond)+1}:`)
+function afficher(condidatlist){
+for(cond of condidatlist){
+    console.log(`# Candidat ${condidatlist.indexOf(cond)+1}:`)
     
     
     for (key in cond){
@@ -58,7 +61,7 @@ for(cond of candidats){
 }
 
 //step4
-function voting(condidatlist){
+function voting(condidatlist){ 
 
     let voterCIN=prompt("donner votre CIN")
     let vote =prompt("donner la CIN de condidat tu vous voter for ")
@@ -68,7 +71,7 @@ function voting(condidatlist){
             console.log( `« Vous avez déjà voté et vous n'avez pas le droit 
                 de modifier votre vote ni de voter à nouveau »`)
                 return;
-            }
+        }
         
         
         else{
@@ -77,49 +80,22 @@ function voting(condidatlist){
                 cond["electeurs"].push(voterCIN);
                 console.log("voting done succsisfully");
                 return ;
-              }}
+            }
         
-             }
+        }
             console.log("candida doesnt exist ") 
             
             }
     
+}       
 
 
 
-    //step6 
- function deleteCON(condidatlist){
 
-    let checker=false
-    let givencin=prompt("donner la cin de le condida");
-    
-    let index=0
-    for( i in  condidatlist){
-        if(condidatlist[i].cin==givencin){
-           checker= true;
-            index=i;
-            console.log(index)
-            break;
-        }
 
-    }
-    if(checker){
-        
-       for(let i=index; i<condidatlist.length-1;i++){
-        
-        condidatlist[i]=condidatlist[i+1]
-        }
-         condidatlist.pop()
-       
-       console.log("delete done sucssesfully")}
-    
-    else console.log("cin doesnt exist")
+           
 
     
-
-}
-
-
 
 //sort by votes 
 function sortbyvotes(condidatlist){
@@ -144,19 +120,18 @@ function sortbyvotes(condidatlist){
 //addMultiCon(candidats)
 //voting(candidats)
 //afficher(candidats)
-console.log(candidats)
-//deleteCON(candidats)
+//console.log(candidats)
 
-sortbyvotes(candidats)
-console.log(candidats)
+
+//sortbyvotes(candidats)
+//hcputconsole.log(candidats)
 
 
 //edit 
 function edit(condidatlist){
     
-     let checker=false
+    let checker=false
     let givencin=prompt("donner la cin de le condida");
-    
     let index=0
     for( i in  condidatlist){
         if(condidatlist[i].cin==givencin){
@@ -168,16 +143,21 @@ function edit(condidatlist){
     if(checker){
     choice=prompt("a, pour chnage age et p pour political")
     switch(choice){
-      case a :{
-        let  givenage=number(prompt("donner neuvou age ")) 
-        let typeofage=number.isInteger(given)
-        while(!typeofage) {console.log("age is invalid pleease use numbers")
-            given=number(prompt("donner neuvou age "))}
-        condidatlist[i].age=givenage
-        break;
+      case "a" :{
+        let  givenage=Number(prompt("donner neuvou age "))
+        let typeofage=false
+        while(!typeofage) {
+            console.log("age is invalid pleease use numbers")
+            givenage=Number(prompt("donner neuvou age "))
+            typeofage=Number.isInteger(givenage)
+            console.log(typeofage)
+        }    
+            
+            condidatlist[i].age=givenage  
+             break;
 
        }
-       case p :{ 
+       case "p" :{ 
         let givenP= prompt("donner nouveu party")
         condidatlist[i].partiPolitique =givenP
         break;
@@ -192,5 +172,87 @@ function edit(condidatlist){
     else console.log("condida doesnt exist")
 }
 
+//7.search
+function search(condidatlist){
+    let checker=false
+    let given =prompt("donner la nom de le condida");
+    let index=0
+    for( i in  condidatlist){
+        if(condidatlist[i].nom ==given){
+           checker= true;
+            index=i;
+            console.log("condidats found")
+            console.log(condidatlist[i])
+            ;}
+       
+    }if(checker===false){ console.log("nom ne pa trouve ")}
 
+}
+
+
+
+function deleteCON(condidatlist){
+
+    let checker=false
+    let givencin=prompt("give the CIN of the condidat u want to delete ");
+    
+    let index=0
+    for(let ind in  condidatlist){
+        if(condidatlist[ind].cin==givencin){
+           checker= true;
+            index=ind;
+            console.log(index)
+            break;
+        }
+
+    }
+   
+    console.log("hihih",condidatlist)
+    if(checker){
+        
+       for(let i=index; i<condidatlist.length-1;i++){
+        console.log("hihih",i, condidatlist[i],condidatlist[i+1])
+         condidatlist[i] = condidatlist[i+1]
+        }
+        
+        condidatlist.pop()
+       
+       console.log("delete done sucssesfully")}
+    
+    else console.log("cin doesnt exist")
+}
+//search(candidats)
+//edit(candidats) console.log(candidats)
+//deleteCON(candidats)
+//cnsole.log(candidats)
+
+
+//8
+function stats(){
+
+}
+// total condidats
+function totalCON(condidatlist){
+    return condidatlist.length;
+}
+function totalvotes(condidatlist){
+    total=0
+    for(index in condidatlist){
+        total=total+(condidatlist[index].electeurs.length)
+
+    }return total
+}
+//voting(candidats)
+//console.log(totalvotes(candidats))
+
+function poduim(condidatlist){
+    arr=[]
+    sortbyvotes(condidatlist);
+    for(let i=0 ; i<3;i++){
+        arr.push(condidatlist[i]);
+    }
+    afficher(arr)
+
+}
+poduim(candidats)
 
