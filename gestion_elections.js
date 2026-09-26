@@ -149,3 +149,48 @@ console.log(candidats)
 
 sortbyvotes(candidats)
 console.log(candidats)
+
+
+//edit 
+function edit(condidatlist){
+    
+     let checker=false
+    let givencin=prompt("donner la cin de le condida");
+    
+    let index=0
+    for( i in  condidatlist){
+        if(condidatlist[i].cin==givencin){
+           checker= true;
+            index=i;
+            
+            break;}
+        }
+    if(checker){
+    choice=prompt("a, pour chnage age et p pour political")
+    switch(choice){
+      case a :{
+        let  givenage=number(prompt("donner neuvou age ")) 
+        let typeofage=number.isInteger(given)
+        while(!typeofage) {console.log("age is invalid pleease use numbers")
+            given=number(prompt("donner neuvou age "))}
+        condidatlist[i].age=givenage
+        break;
+
+       }
+       case p :{ 
+        let givenP= prompt("donner nouveu party")
+        condidatlist[i].partiPolitique =givenP
+        break;
+    }
+    default :{
+        console.log("please choose a or b only ") 
+             edit(condidatlist)
+
+    }
+
+    }} 
+    else console.log("condida doesnt exist")
+}
+
+
+
