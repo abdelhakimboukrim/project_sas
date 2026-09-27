@@ -254,5 +254,15 @@ function poduim(condidatlist){
     afficher(arr)
 
 }
-poduim(candidats)
+function filterbyparty(condidatsList){
+  party=prompt("give the name of the political party :")
+  let ckecker=false
+  arr=[]
+for(let index in condidatsList){
+  if (condidatsList[index].partiPolitique===party){
+    arr.push(condidatsList[index])
+    checker=true}}
+    afficher(arr)
+}
+
 
