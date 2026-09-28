@@ -87,7 +87,11 @@ for(let index in condidatsList){
     arr.push(condidatsList[index])
     ckecker=true}}
     afficher(arr)
+<<<<<<< HEAD
 if(!ckecker) console.log("partiepolitique nom invalid !!")
+=======
+if(!ckecker) console.log("party does not exist")
+>>>>>>> 07e3672be77b73fe3740ffb3716b22a60b622ebe
 
 }
 
@@ -107,16 +111,27 @@ function voting(condidatlist){
         
         
         else{
+<<<<<<< HEAD
             let voting=false
             if( vote===cond.cin){
                 cond["electeurs"].push(voterCIN);
                 console.log("voting done succsisfully");
                 voting=true
+=======
+            
+            if( vote===cond.cin){
+                cond["electeurs"].push(voterCIN);
+                console.log("voting done succsisfully");
+>>>>>>> 07e3672be77b73fe3740ffb3716b22a60b622ebe
                 return ;
             }
         
         }
+<<<<<<< HEAD
         if(voting===false)console.log("candida doesnt exist ") 
+=======
+            console.log("candida doesnt exist ") 
+>>>>>>> 07e3672be77b73fe3740ffb3716b22a60b622ebe
             
             }
     
@@ -204,7 +219,11 @@ function deleteCON(condidatlist){
    
     if(checker){
         
+<<<<<<< HEAD
        for(let i=index; i < condidatlist.length-1;i++){
+=======
+       for(let i=index; i<condidatlist.length-1;i++){
+>>>>>>> 07e3672be77b73fe3740ffb3716b22a60b622ebe
          condidatlist[i] = condidatlist[i+1]
         }
         
@@ -215,11 +234,14 @@ function deleteCON(condidatlist){
     else console.log("CONDIDATE N'EXEST PAS!!")
 
 }
+<<<<<<< HEAD
 
 
 
 
 
+=======
+>>>>>>> 07e3672be77b73fe3740ffb3716b22a60b622ebe
 //8
 function stats(condidatList){
 
@@ -242,7 +264,11 @@ function stats(condidatList){
             stats(condidatList);
             break;
         case 3:
+<<<<<<< HEAD
          partystats(condidatList)
+=======
+        
+>>>>>>> 07e3672be77b73fe3740ffb3716b22a60b622ebe
         case 0:
             break;
 
@@ -276,6 +302,7 @@ function poduim(condidatlist){
 
 }
 
+<<<<<<< HEAD
 function partystats(condidatList){
     let obj={}
     for(let cond of condidatList){
@@ -291,6 +318,8 @@ function partystats(condidatList){
     }
     console.log(obj)
 }
+=======
+>>>>>>> 07e3672be77b73fe3740ffb3716b22a60b622ebe
 
 
 
