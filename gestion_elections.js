@@ -30,8 +30,11 @@ for(let key in con ){
    }
 
 con[key]=prompt(`donner le ${key} de condidat :`);
+
 }
+
 condidatlist.push(con)
+console.log("condidate bien ajouter!")
 }
 //step2
 function addMultiCon(condidatlist){
@@ -61,19 +64,23 @@ for(cond of condidatlist){
 
 //sort by votes 
 function sortbyvotes(condidatlist){
-    
-    for(let i=0;i<condidatlist.length;i++){
-        for(let j=i;j<condidatlist.length-1;j++){
-           if(condidatlist[j].electeurs.length<condidatlist[j+1].electeurs.length){
-               let temp=condidatlist[j]
-               condidatlist[j]=condidatlist[j+1]
-               condidatlist[j+1]=temp
+    let arr=[]
+    for(let j=0; j<condidatlist.length;j++){
+      arr.push(condidatlist[j])
+
+    }
+    for(let i=0;i<arr.length;i++){
+        for(let j=i;j<arr.length-1;j++){
+           if(arr[j].electeurs.length<arr[j+1].electeurs.length){
+               let temp=arr[j]
+               arr[j]=arr[j+1]
+               arr[j+1]=temp
                
             }
          }
         
     
-    }
+    }return arr
 
 }
 
@@ -87,11 +94,7 @@ for(let index in condidatsList){
     arr.push(condidatsList[index])
     ckecker=true}}
     afficher(arr)
-<<<<<<< HEAD
 if(!ckecker) console.log("partiepolitique nom invalid !!")
-=======
-if(!ckecker) console.log("party does not exist")
->>>>>>> 07e3672be77b73fe3740ffb3716b22a60b622ebe
 
 }
 
@@ -111,27 +114,16 @@ function voting(condidatlist){
         
         
         else{
-<<<<<<< HEAD
             let voting=false
             if( vote===cond.cin){
                 cond["electeurs"].push(voterCIN);
                 console.log("voting done succsisfully");
                 voting=true
-=======
-            
-            if( vote===cond.cin){
-                cond["electeurs"].push(voterCIN);
-                console.log("voting done succsisfully");
->>>>>>> 07e3672be77b73fe3740ffb3716b22a60b622ebe
                 return ;
             }
         
         }
-<<<<<<< HEAD
         if(voting===false)console.log("candida doesnt exist ") 
-=======
-            console.log("candida doesnt exist ") 
->>>>>>> 07e3672be77b73fe3740ffb3716b22a60b622ebe
             
             }
     
@@ -155,11 +147,11 @@ function edit(condidatlist){
     switch(choice){
       case "a" :{
         let  givenage=Number(prompt("donner neuvou age "))
-        let typeofage=false
+        let typeofage=Number.isInteger(givenage)
         while(!typeofage) {
-            console.log("age is invalid pleease use numbers")
-            givenage=Number(prompt("donner neuvou age "))
-            typeofage=Number.isInteger(givenage)
+            
+            givenage=Number(prompt("age invalid ; donner neuveou age : "))
+            
             
         }    
             
@@ -219,11 +211,7 @@ function deleteCON(condidatlist){
    
     if(checker){
         
-<<<<<<< HEAD
        for(let i=index; i < condidatlist.length-1;i++){
-=======
-       for(let i=index; i<condidatlist.length-1;i++){
->>>>>>> 07e3672be77b73fe3740ffb3716b22a60b622ebe
          condidatlist[i] = condidatlist[i+1]
         }
         
@@ -234,14 +222,11 @@ function deleteCON(condidatlist){
     else console.log("CONDIDATE N'EXEST PAS!!")
 
 }
-<<<<<<< HEAD
 
 
 
 
 
-=======
->>>>>>> 07e3672be77b73fe3740ffb3716b22a60b622ebe
 //8
 function stats(condidatList){
 
@@ -264,11 +249,7 @@ function stats(condidatList){
             stats(condidatList);
             break;
         case 3:
-<<<<<<< HEAD
          partystats(condidatList)
-=======
-        
->>>>>>> 07e3672be77b73fe3740ffb3716b22a60b622ebe
         case 0:
             break;
 
@@ -293,16 +274,15 @@ function totalvotes(condidatlist){
 }
 
 function poduim(condidatlist){
-    arr=[]
-    sortbyvotes(condidatlist);
+    let arr1=[];
+     let arr2 =sortbyvotes(condidatlist)
     for(let i=0 ; i<3;i++){
-        arr.push(condidatlist[i]);
+        arr1.push(arr2[i]);
     }
-    afficher(arr)
+    afficher(arr1)
 
 }
 
-<<<<<<< HEAD
 function partystats(condidatList){
     let obj={}
     for(let cond of condidatList){
@@ -318,8 +298,6 @@ function partystats(condidatList){
     }
     console.log(obj)
 }
-=======
->>>>>>> 07e3672be77b73fe3740ffb3716b22a60b622ebe
 
 
 
@@ -333,17 +311,18 @@ function Menu(condidatlist){
       ==== GENTION DES ELECTIONS - MENU ====  
         1.Ajoute un candidat.
         2.Ajoute plusieurs candidats.
-        3.afficher la list ;
+        3.afficher la list sorted by votes;
         4.afficher par partie politique .
         5.voter a un candidad.
         6.Modifier un candidas.
         7.supprimer un candidas.
         8.rechercher un condidat par nom.
         9.stastics  de elections.
+        10.affiche simple
         0.Quitter
       ======================================`)
 
-    choice=parseInt(prompt(""))
+    choice=parseInt(prompt("votre choix:"))
     switch(choice){
         case 1 : 
               addcandidat(condidatlist);
@@ -355,8 +334,8 @@ function Menu(condidatlist){
               Menu(condidatlist)
               break;
         case 3:
-            sortbyvotes(condidatlist);
-            afficher(condidatlist)
+           sorted=sortbyvotes(condidatlist)
+           afficher(sorted);
             Menu(condidatlist)
             break;
         case 4:
@@ -381,6 +360,10 @@ function Menu(condidatlist){
             break;
         case 9:
             stats(condidatlist)
+            Menu(condidatlist)
+            break;
+        case 10:
+            afficher(condidatlist)
             Menu(condidatlist)
             break;
         case 0:
